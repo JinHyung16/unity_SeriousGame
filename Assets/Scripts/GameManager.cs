@@ -61,6 +61,8 @@ sealed class GameManager : MonoBehaviour
 	public int itemIndex = -1;
 	public int textRandomIndex = 0;
 
+	public bool isTakeItem = false;
+
 	public Sprite[] itemSprites;
 
 	// about UI
@@ -114,7 +116,7 @@ sealed class GameManager : MonoBehaviour
 			int xPos = Random.Range(-6, 8);
 			int zPos = Random.Range(-4, 1);
 
-			if(xPos == 0 && zPos == 0)
+			if((xPos == 0 && zPos == 0))
             {
 				xPos = Random.Range(-6, 8);
 				zPos = Random.Range(-4, 1);
@@ -182,6 +184,7 @@ sealed class GameManager : MonoBehaviour
 		if(playTime < 0.0f)
         {
 			GameClear();
+			playTime = 0.2f;
 		}
 	}
 
@@ -213,6 +216,7 @@ sealed class GameManager : MonoBehaviour
 		score = 0;
 		life = 3;
 		playTime = 60.2f;
+		isTakeItem = false;
 
 		for (int i = 0; i < lifeImgs.Length; i++)
 		{
@@ -233,7 +237,6 @@ sealed class GameManager : MonoBehaviour
 		resultText.text = textReader.TextReturn(textRandomIndex);
 
 		ObjectPooling.Instance.ResetItem();
-		SceneManager.LoadScene(0);
 
 		Time.timeScale = 0;
     }
@@ -321,6 +324,7 @@ sealed class GameManager : MonoBehaviour
 			default:
 				ItemName = name;
 				itemIndex = -1;
+				isTakeItem = false;
 				break;
 		}
     }

@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 4461256325960483524}
   - component: {fileID: 1877270642655901198}
   - component: {fileID: 7188057951622988488}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Closet
   m_TagString: Decoration
   m_Icon: {fileID: 0}

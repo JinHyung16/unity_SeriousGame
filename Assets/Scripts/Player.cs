@@ -27,7 +27,7 @@ public class Player : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Item"))
+        if (other.CompareTag("Item") && !GameManager.Instance.isTakeItem)
         {
             anim.SetTrigger("isTake");
 
@@ -35,10 +35,12 @@ public class Player : MonoBehaviour
 
             // ui upadet
             GameManager.Instance.TakeItem(other.gameObject.name);
+            GameManager.Instance.isTakeItem = true;
         }
     }
-
-    private void OnCollisionExit(Collision collision)
+    
+    /*
+    private void OnCollisionEnter(Collision collision)
     {
         if (collision.gameObject.CompareTag("Box"))
         {
@@ -46,6 +48,7 @@ public class Player : MonoBehaviour
             GameManager.Instance.TakeItem("None");
         }
     }
+    */
 
     private void TouchInput()
     {

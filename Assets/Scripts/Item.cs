@@ -6,7 +6,7 @@ public class Item : MonoBehaviour
 {
     private void OnTriggerEnter(Collider other)
     {
-        if(other.CompareTag("Player"))
+        if(other.CompareTag("Player") && !GameManager.Instance.isTakeItem)
         {
             this.gameObject.SetActive(false);
         }
