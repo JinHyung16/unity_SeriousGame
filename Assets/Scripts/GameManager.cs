@@ -36,6 +36,10 @@ sealed class GameManager : MonoBehaviour
 	}
 	#endregion
 
+	AudioSource audio;
+
+	public AudioClip bgmClip;
+
 	// public ObjectPooling poolManager;
 	public TextReader textReader;
 
@@ -82,6 +86,8 @@ sealed class GameManager : MonoBehaviour
 
     private void Start()
     {
+		audio = GetComponent<AudioSource>();
+
 		Time.timeScale = 0;
 
 		startTime = Time.time;
@@ -183,7 +189,7 @@ sealed class GameManager : MonoBehaviour
 
 		if(playTime < 0.0f)
         {
-			GameClear();
+			GameOver();
 			playTime = 0.2f;
 		}
 	}
@@ -195,6 +201,8 @@ sealed class GameManager : MonoBehaviour
 		resultPanel.SetActive(false);
 
 		textRandomIndex = Random.Range(0, 6);
+
+		BGMPlay();
 
 		StartCoroutine(SpawnItem());
 		StartCoroutine(SentenceDisplayUpdate());
@@ -225,11 +233,12 @@ sealed class GameManager : MonoBehaviour
 
 		InvenSetting();
 		InitItemSpawn();
+		BGMPlay();
 
 		Time.timeScale = 1;
 	}
 
-	private void GameClear()
+	private void GameOver()
     {
 		startPanel.SetActive(false);
 		resultPanel.SetActive(true);
@@ -237,6 +246,7 @@ sealed class GameManager : MonoBehaviour
 		resultText.text = textReader.TextReturn(textRandomIndex);
 
 		ObjectPooling.Instance.ResetItem();
+		audio.Stop();
 
 		Time.timeScale = 0;
     }
@@ -278,6 +288,12 @@ sealed class GameManager : MonoBehaviour
 		}
     }
 
+	private void BGMPlay()
+    {
+		audio.clip = bgmClip;
+		audio.Play();
+    }
+
 	public void LifeDown()
     {
 		if(0 < life)
@@ -289,7 +305,7 @@ sealed class GameManager : MonoBehaviour
 		if (life == 0)
 		{
 			lifeImgs[0].color = new Color(0, 0, 0, 0);
-			GameClear();
+			GameOver();
 		}
     }
 
