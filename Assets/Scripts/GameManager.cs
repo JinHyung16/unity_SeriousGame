@@ -52,7 +52,6 @@ sealed class GameManager : MonoBehaviour
 	private float startTime;
 
 	[SerializeField] private float spawnTime = 5.5f;
-	[SerializeField] private float sentenceTime = 8.5f;
 	[SerializeField] private float boxChangeTime = 7.5f;
 
 	private string[] itemNames = { "ballSmile", "ballAngry", "bearCalm", "bearHurt", "photoCalm", "photoHurt" };
@@ -63,7 +62,6 @@ sealed class GameManager : MonoBehaviour
 	public int life = 3;
 
 	public int itemIndex = -1;
-	public int textRandomIndex = 0;
 
 	public bool isTakeItem = false;
 
@@ -119,29 +117,19 @@ sealed class GameManager : MonoBehaviour
 		while(true)
         {
 			int index = Random.Range(0, 6);
-			int xPos = Random.Range(-6, 8);
-			int zPos = Random.Range(-4, 1);
+			int xPos = Random.Range(-7, 8);
+			int zPos = Random.Range(-2, 4);
 
 			if((xPos == 0 && zPos == 0))
             {
-				xPos = Random.Range(-6, 8);
-				zPos = Random.Range(-4, 1);
+				xPos = Random.Range(-7, 8);
+				zPos = Random.Range(-2, 4);
 			}
 
 			GameObject item = ObjectPooling.Instance.MakeItem(itemNames[index]);
 			item.transform.position = new Vector3(xPos - 0.5f, -1, zPos - 0.5f);
 			item.SetActive(true);
 			yield return Cashing.YieldInstruction.WaitForSeconds(spawnTime);
-        }
-    }
-
-	IEnumerator SentenceDisplayUpdate()
-    {
-		while(true)
-        {
-			int index = Random.Range(0, 6);
-			sentenceText.text = textReader.TextReturn(index);
-			yield return Cashing.YieldInstruction.WaitForSeconds(sentenceTime);
         }
     }
 
@@ -199,13 +187,11 @@ sealed class GameManager : MonoBehaviour
 		InitItemSpawn();
 		startPanel.SetActive(false);
 		resultPanel.SetActive(false);
-
-		textRandomIndex = Random.Range(0, 6);
+		sentenceText.text = " ";
 
 		BGMPlay();
 
 		StartCoroutine(SpawnItem());
-		StartCoroutine(SentenceDisplayUpdate());
 		StartCoroutine(BoxPosition());
 
 		Time.timeScale = 1;
@@ -218,7 +204,7 @@ sealed class GameManager : MonoBehaviour
 		startPanel.SetActive(false);
 		resultPanel.SetActive(false);
 
-		textRandomIndex = Random.Range(0, 6);
+		sentenceText.text = " ";
 
 		itemIndex = -1;
 		score = 0;
@@ -243,7 +229,7 @@ sealed class GameManager : MonoBehaviour
 		startPanel.SetActive(false);
 		resultPanel.SetActive(true);
 
-		resultText.text = textReader.TextReturn(textRandomIndex);
+		resultText.text = sentenceText.text;
 
 		ObjectPooling.Instance.ResetItem();
 		audio.Stop();
@@ -293,6 +279,10 @@ sealed class GameManager : MonoBehaviour
 		audio.clip = bgmClip;
 		audio.Play();
     }
+	public void SentenceDisplayUpdate(int index)
+	{
+		sentenceText.text = textReader.TextReturn(index);
+	}
 
 	public void LifeDown()
     {

@@ -21,37 +21,61 @@ public class BoxHurt : MonoBehaviour
         switch(GameManager.Instance.ItemName)
         {
 			case "BallSmile":
-                inCorrectPartilce.Play();
-                GameManager.Instance.score--;
-                GameManager.Instance.LifeDown();
-                GameManager.Instance.isTakeItem = false;
+                {
+                    inCorrectPartilce.Play();
+                    GameManager.Instance.score--;
+                    GameManager.Instance.LifeDown();
+                    GameManager.Instance.isTakeItem = false;
+                    int index = Random.Range(4, 8);
+                    GameManager.Instance.SentenceDisplayUpdate(index);
+                }
                 break;
 			case "BearCalm":
-                inCorrectPartilce.Play();
-                GameManager.Instance.score--;
-                GameManager.Instance.LifeDown();
-                GameManager.Instance.isTakeItem = false;
+                {
+                    inCorrectPartilce.Play();
+                    GameManager.Instance.score--;
+                    GameManager.Instance.LifeDown();
+                    GameManager.Instance.isTakeItem = false;
+                    int index = Random.Range(4, 8);
+                    GameManager.Instance.SentenceDisplayUpdate(index);
+                }
                 break;
             case "PhotoCalm":
-                inCorrectPartilce.Play();
-                GameManager.Instance.score--;
-                GameManager.Instance.LifeDown();
-                GameManager.Instance.isTakeItem = false;
+                {
+                    inCorrectPartilce.Play();
+                    GameManager.Instance.score--;
+                    GameManager.Instance.LifeDown();
+                    GameManager.Instance.isTakeItem = false;
+                    int index = Random.Range(4, 8);
+                    GameManager.Instance.SentenceDisplayUpdate(index);
+                }
                 break;
             case "BallAngry":
-                correctPartilce.Play();
-                GameManager.Instance.score++;
-                GameManager.Instance.isTakeItem = false;
+                {
+                    correctPartilce.Play();
+                    GameManager.Instance.score++;
+                    GameManager.Instance.isTakeItem = false;
+                    int index = Random.Range(0, 4);
+                    GameManager.Instance.SentenceDisplayUpdate(index);
+                }
                 break;
             case "BearHurt":
-                correctPartilce.Play();
-                GameManager.Instance.score++;
-                GameManager.Instance.isTakeItem = false;
+                {
+                    correctPartilce.Play();
+                    GameManager.Instance.score++;
+                    GameManager.Instance.isTakeItem = false;
+                    int index = Random.Range(0, 4);
+                    GameManager.Instance.SentenceDisplayUpdate(index);
+                }
                 break;
 			case "PhotoHurt":
-                correctPartilce.Play();
-                GameManager.Instance.score++;
-                GameManager.Instance.isTakeItem = false;
+                {
+                    correctPartilce.Play();
+                    GameManager.Instance.score++;
+                    GameManager.Instance.isTakeItem = false;
+                    int index = Random.Range(0, 4);
+                    GameManager.Instance.SentenceDisplayUpdate(index);
+                }
                 break;
             default:
                 break;

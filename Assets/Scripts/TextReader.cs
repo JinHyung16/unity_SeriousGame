@@ -31,13 +31,21 @@ public class TextReader : MonoBehaviour
             {
                 //string value = values[j];
                 //value = value.TrimStart(TRIM_CHARS).TrimEnd(TRIM_CHARS).Replace("\\", "");
-                if(values[j] != String.Empty)
+                if (values[j] != String.Empty)
                 {
                     text.Add(values[j]);
                 }
             }
         }
     }
+
+    /// <summary>
+    /// sentences in TextData file
+    /// 0 ~ 3 == correct sentence
+    /// 4 ~ 7 == incorrect sentence
+    /// </summary>
+    /// <param name="index"></param>
+    /// <returns></returns>
 
     public string TextReturn(int index)
     {
@@ -62,6 +70,12 @@ public class TextReader : MonoBehaviour
                 break;
             case 5:
                 t = text[5];
+                break;
+            case 6:
+                t = text[6];
+                break;
+            case 7:
+                t = text[7];
                 break;
             default:
                 t = "none";
