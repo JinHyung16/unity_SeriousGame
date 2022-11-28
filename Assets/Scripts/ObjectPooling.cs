@@ -10,7 +10,7 @@ sealed class ObjectPooling : MonoBehaviour
     {
         get
         {
-            if(instance == null)
+            if (instance == null)
             {
                 return null;
             }
@@ -19,7 +19,7 @@ sealed class ObjectPooling : MonoBehaviour
     }
     private void Awake()
     {
-        if(instance == null)
+        if (instance == null)
         {
             instance = this;
             DontDestroyOnLoad(this.gameObject);
@@ -60,7 +60,7 @@ sealed class ObjectPooling : MonoBehaviour
         photoHurts = new GameObject[10];
     }
 
-	private void Pooling()
+    private void Pooling()
     {
         for (int i = 0; i < ballSmiles.Length; i++)
         {
@@ -114,7 +114,7 @@ sealed class ObjectPooling : MonoBehaviour
 
     public GameObject MakeItem(string name)
     {
-        switch(name)
+        switch (name)
         {
             case "ballSmile":
                 targets = ballSmiles;

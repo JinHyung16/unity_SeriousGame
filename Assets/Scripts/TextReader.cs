@@ -8,7 +8,6 @@ public class TextReader : MonoBehaviour
 {
     static string splite_read = @",(?=(?:[^""]*""[^""]*"")*(?![^""]*""))";
     static string splite_read_line = @"\r\n|\n\r|\n|\r";
-    // static char[] TRIM_CHARS = { '\"' };
 
     [SerializeField] private List<string> text;
 
@@ -29,8 +28,6 @@ public class TextReader : MonoBehaviour
 
             for (int j = 0; j < values.Length; j++)
             {
-                //string value = values[j];
-                //value = value.TrimStart(TRIM_CHARS).TrimEnd(TRIM_CHARS).Replace("\\", "");
                 if (values[j] != String.Empty)
                 {
                     text.Add(values[j]);
@@ -44,8 +41,8 @@ public class TextReader : MonoBehaviour
     /// 0 ~ 3 == correct sentence
     /// 4 ~ 7 == incorrect sentence
     /// </summary>
-    /// <param name="index"></param>
-    /// <returns></returns>
+    /// <param name="index"> 가져올 text line의 index값 </param>
+    /// <returns> 해당 index에 적힌 문구를 string으로 리턴한다 </returns>
 
     public string TextReturn(int index)
     {
