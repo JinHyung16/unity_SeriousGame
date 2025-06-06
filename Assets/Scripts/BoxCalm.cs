@@ -18,7 +18,7 @@ public class BoxCalm : MonoBehaviour
 
     private void ItemCheck()
     {
-        GameManager cameManager = GameManager.Instance;
+        GameManager gameManager = GameManager.Instance;
         switch (GameManager.Instance.ItemName)
         {
             case "PhotoCalm":
@@ -26,10 +26,10 @@ public class BoxCalm : MonoBehaviour
             case "BallSmile":
                 {
                     correctPartilce.Play();
-                    cameManager.score++;
-                    cameManager.isTakeItem = false;
+                    gameManager.score++;
+                    gameManager.isTakeItem = false;
                     int index = Random.Range(0, 4);
-                    cameManager.SentenceDisplayUpdate(index);
+                    gameManager.SentenceDisplayUpdate(index);
                 }
                 break;
             case "PhotoHurt":
@@ -37,11 +37,11 @@ public class BoxCalm : MonoBehaviour
             case "BallAngry":
                 {
                     inCorrectPartilce.Play();
-                    cameManager.score--;
-                    cameManager.LifeDown();
-                    cameManager.isTakeItem = false;
+                    gameManager.score--;
+                    gameManager.LifeDown();
+                    gameManager.isTakeItem = false;
                     int index = Random.Range(4, 8);
-                    cameManager.SentenceDisplayUpdate(index);
+                    gameManager.SentenceDisplayUpdate(index);
                 }
                 break;
             default:
