@@ -18,63 +18,30 @@ public class BoxCalm : MonoBehaviour
 
     private void ItemCheck()
     {
+        GameManager cameManager = GameManager.Instance;
         switch (GameManager.Instance.ItemName)
         {
+            case "PhotoCalm":
+            case "BearCalm":
             case "BallSmile":
                 {
                     correctPartilce.Play();
-                    GameManager.Instance.score++;
-                    GameManager.Instance.isTakeItem = false;
+                    cameManager.score++;
+                    cameManager.isTakeItem = false;
                     int index = Random.Range(0, 4);
-                    GameManager.Instance.SentenceDisplayUpdate(index);
-                }
-                break;
-            case "BearCalm":
-                {
-                    correctPartilce.Play();
-                    GameManager.Instance.score++;
-                    GameManager.Instance.isTakeItem = false;
-                    int index = Random.Range(0, 4);
-                    GameManager.Instance.SentenceDisplayUpdate(index);
-                }
-                break;
-            case "PhotoCalm":
-                {
-                    correctPartilce.Play();
-                    GameManager.Instance.score++;
-                    GameManager.Instance.isTakeItem = false;
-                    int index = Random.Range(0, 4);
-                    GameManager.Instance.SentenceDisplayUpdate(index);
-                }
-                break;
-            case "BallAngry":
-                {
-                    inCorrectPartilce.Play();
-                    GameManager.Instance.score--;
-                    GameManager.Instance.LifeDown();
-                    GameManager.Instance.isTakeItem = false;
-                    int index = Random.Range(4, 8);
-                    GameManager.Instance.SentenceDisplayUpdate(index);
-                }
-                break;
-            case "BearHurt":
-                {
-                    inCorrectPartilce.Play();
-                    GameManager.Instance.score--;
-                    GameManager.Instance.LifeDown();
-                    GameManager.Instance.isTakeItem = false;
-                    int index = Random.Range(4, 8);
-                    GameManager.Instance.SentenceDisplayUpdate(index);
+                    cameManager.SentenceDisplayUpdate(index);
                 }
                 break;
             case "PhotoHurt":
+            case "BearHurt":
+            case "BallAngry":
                 {
                     inCorrectPartilce.Play();
-                    GameManager.Instance.score--;
-                    GameManager.Instance.LifeDown();
-                    GameManager.Instance.isTakeItem = false;
+                    cameManager.score--;
+                    cameManager.LifeDown();
+                    cameManager.isTakeItem = false;
                     int index = Random.Range(4, 8);
-                    GameManager.Instance.SentenceDisplayUpdate(index);
+                    cameManager.SentenceDisplayUpdate(index);
                 }
                 break;
             default:
